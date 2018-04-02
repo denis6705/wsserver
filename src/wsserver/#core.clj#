@@ -11,6 +11,9 @@
         total (/ (double (- (. System (nanoTime)) start)) 1000000.0)]
     {:time total
      :result result}))
+(defn ping
+  [ip]
+  (timed-ping ip 500))
 
 (defn -main
   "I don't do a whole lot ... yet."
@@ -23,6 +26,6 @@
 (:ip (first nodes))
 (map :ip nodes)
 (timed-ping (:ip (first nodes)) 500)
-(doseq [x (map :ip nodes)] (prn (timed-ping x 500)))
-(def x (map :ip nodes))
-(let [ 
+(def pings (pmap ping (map :ip nodes)))
+(def t (time (doall pings)))
+pings

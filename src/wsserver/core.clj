@@ -11,6 +11,9 @@
         total (/ (double (- (. System (nanoTime)) start)) 1000000.0)]
     {:time total
      :result result}))
+(defn ping
+  [ip]
+  (timed-ping ip 500))
 
 (defn -main
   "I don't do a whole lot ... yet."
@@ -23,3 +26,5 @@
 (:ip (first nodes))
 (map :ip nodes)
 (timed-ping (:ip (first nodes)) 500)
+(def pings (map timed-ping (map :ip nodes) 500))
+pings
