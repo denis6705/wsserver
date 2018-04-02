@@ -1,0 +1,14 @@
+(ns wsserver.core
+  (:require [clojure.data.json :as json])
+  (:gen-class))
+
+(defn -main
+  "I don't do a whole lot ... yet."
+  [& args]
+  (println "Hello, World!"))
+
+(def nodes (json/read-json (slurp "nodes.json")))
+ 
+(type nodes)
+(type (first nodes))
+(first nodes)
