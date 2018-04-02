@@ -26,6 +26,5 @@
 (:ip (first nodes))
 (map :ip nodes)
 (timed-ping (:ip (first nodes)) 500)
-(def pings (pmap ping (map :ip nodes)))
-(def t (time (doall pings)))
-pings
+(def newnodes (map conj nodes (pmap ping (map :ip nodes))))
+newnodes
